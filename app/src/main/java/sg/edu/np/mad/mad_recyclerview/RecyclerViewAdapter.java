@@ -27,14 +27,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tasks,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tasks,parent,false); //fixed
         final ViewHolder holder = new ViewHolder(view);
         holder.tasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 deleteAlert = new AlertDialog.Builder(mContext);
                 deleteAlert.setTitle("Delete");
-                View view = LayoutInflater.from(mContext).inflate(R.layout.deletealert,null);
+                View view = LayoutInflater.from(mContext).inflate(R.layout.deletealert,null); //fixed
                 deleteTask = (TextView) view.findViewById(R.id.deleteTaskName);
                 deleteTask.setText(tasksList.get(holder.getAdapterPosition()) + "?");
                 deleteAlert.setCancelable(true);
