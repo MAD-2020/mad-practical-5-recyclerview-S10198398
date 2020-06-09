@@ -34,10 +34,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
             public void onClick(View v) {
                 deleteAlert = new AlertDialog.Builder(mContext);
                 deleteAlert.setTitle("Delete");
+
                 View view = LayoutInflater.from(mContext).inflate(R.layout.deletealert,null); //fixed
                 deleteTask = (TextView) view.findViewById(R.id.deleteTaskName);
                 deleteTask.setText(tasksList.get(holder.getAdapterPosition()) + "?");
-                deleteAlert.setCancelable(true);
+
+                deleteAlert.setCancelable(true); // set for cancel
                 deleteAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
