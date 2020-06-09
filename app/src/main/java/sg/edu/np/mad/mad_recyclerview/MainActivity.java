@@ -16,8 +16,8 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    EditText insertTask;
-    Button addButton;
+    EditText insertitem;
+    Button addBtn;
     String userInput;
     ArrayList<String> taskList;
 
@@ -27,26 +27,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        insertTask = (EditText)findViewById(R.id.insertTask);
-        addButton = (Button) findViewById(R.id.addButton);
-        taskList = new ArrayList<String>();
+        //inserting task
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        insertitem = (EditText)findViewById(R.id.insertTask);
+        addBtn = (Button) findViewById(R.id.AddBtn); //adding buttons
+        taskList = new ArrayList<String>(); // adding the three main task into the list
         taskList.add("Buy Milk");
         taskList.add("Send Postage");
         taskList.add("Buy Android development Book");
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         final RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(taskList,this);
-
         LinearLayoutManager mLayoutManager =  new LinearLayoutManager(this);
-
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        addButton.setOnClickListener(new View.OnClickListener() {
+        //add button listening for adding
+        addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userInput = insertTask.getText().toString();
+                userInput = insertitem.getText().toString();
                 taskList.add(userInput);
                 mAdapter.notifyDataSetChanged();
 
@@ -63,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
      * @param data ArrayList that was passed into RecyclerView
      */
     private void showNewEntry(RecyclerView rv, ArrayList data){
-        //scroll to the last item of the recyclerview
+        //scroll down to the last recycler item
         rv.scrollToPosition(data.size() - 1);
 
-        //auto hide keyboard after entry
+        //automatically hide the keyboard after input
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(rv.getWindowToken(), 0);
     }
